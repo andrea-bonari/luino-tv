@@ -1,6 +1,8 @@
 import type { Playlist, Video } from "$lib/types";
 import type { PageLoad } from "./$types";
 
+export const prerender = true;
+
 export const load = (async ({ fetch }) => {
     const response = await fetch(`https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=${import.meta.env.VITE_CHANNEL_ID}&key=${import.meta.env.VITE_YOUTUBE_API_KEY}`);
     const data = await response.json();
