@@ -22,6 +22,33 @@
     }
 </script>
 
+<svelte:head>
+    <title>LuinoTV - Contatti</title>
+    <meta name="description" content="Contatta LuinoTV"/>
+    <meta name="keywords" content="luino, tv, luinotv, contatti, email, telefono, social media"/>
+
+    <meta property="og:title" content="LuinoTV - Contatti"/>
+    <meta property="og:description" content="Contatta LuinoTV"/>
+    <meta property="og:image" content="https://luinotv.it/favicons/android-chrome-256x256.png"/>
+    <meta property="og:url" content="https://luinotv.it/contatti/"/>
+    <meta property="og:site_name" content="LuinoTV"/>
+    <meta property="og:locale" content="it_IT"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:author" content="LuinoTV"/>
+    <meta property="og:author:email" content="redazione@luinotv.it"/>
+    <meta property="og:author:website" content="https://luinotv.it/"/>
+    <meta property="og:author:url" content="https://luinotv.it/"/>
+    <meta property="og:author:role" content="Publisher"/>
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="LuinoTV - Contatti"/>
+    <meta name="twitter:description" content="Contatta LuinoTV"/>
+    <meta name="twitter:image" content="https://luinotv.it/favicons/android-chrome-256x256.png"/>
+    <meta name="twitter:image:alt" content="LuinoTV"/>
+    <meta name="twitter:site" content="@LuinoTv"/>
+    <meta name="twitter:creator" content="@LuinoTv"/>
+</svelte:head>
+
 <main class="flex flex-col content-center w-full">
     <h1 class="w-full text-center h1 mt-3 mb-5">Contatti</h1>
 
