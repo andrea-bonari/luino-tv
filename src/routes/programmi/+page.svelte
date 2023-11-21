@@ -39,7 +39,7 @@
 			{#if i % import.meta.env.VITE_AD_PER_PROGRAM == 0 && data.ads.length > i / import.meta.env.VITE_AD_PER_PROGRAM}
 				<a href={data.ads[i / import.meta.env.VITE_AD_PER_PROGRAM].href}>
 					{#if data.ads[i / import.meta.env.VITE_AD_PER_PROGRAM].type == 'image'}
-						<img src={data.ads[i / import.meta.env.VITE_AD_PER_PROGRAM].src} alt="Pubblicità" class="max-w-full md:max-w-sm w-full lg:max-w-full lg:flex rounded-lg variant-filled-surface border stre" />
+						<img src={data.ads[i / import.meta.env.VITE_AD_PER_PROGRAM].src} alt="Pubblicità" class="max-w-full md:max-w-sm w-full lg:max-w-full lg:flex rounded-lg variant-filled-surface border" />
 					{:else}
 						<video width="250" height="250" autoplay muted>
 							<source src={data.ads[i / import.meta.env.VITE_AD_PER_PROGRAM].src} type="video/mp4" class="max-w-full md:max-w-sm w-full lg:max-w-full lg:flex rounded-lg variant-filled-surface border" />
@@ -71,6 +71,21 @@
 					>
 				</div>
 			</div>
+		{/each}
+		
+		{#each data.ads as ad, i}
+			<!-- Spero di non dover mai più toccare questa condizione -->
+			{#if data.playlists.length <= import.meta.env.VITE_AD_PER_PROGRAM && i + 1 > data.playlists.length / import.meta.env.VITE_AD_PER_PROGRAM || i > data.playlists.length / import.meta.env.VITE_AD_PER_PROGRAM}
+				<a href={ad.href}>
+					{#if ad.type == 'image'}
+						<img src={ad.src} alt="Pubblicità" class="max-w-full md:max-w-sm w-full lg:max-w-full lg:flex rounded-lg variant-filled-surface border" />
+					{:else}
+						<video width="250" height="250" autoplay muted>
+							<source src={ad.src} type="video/mp4" class="max-w-full md:max-w-sm w-full lg:max-w-full lg:flex rounded-lg variant-filled-surface border" />
+						</video>
+					{/if}
+				</a>
+			{/if}
 		{/each}
 	</div>
 </main>

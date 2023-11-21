@@ -1,6 +1,10 @@
+import { getEpisodeAds, getMockEpisodeAds } from '$lib/ads';
 import { fetchPlaylist } from '$lib/youtube';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params, fetch }) => {
-	return await fetchPlaylist(params.id, fetch);
+	return await {
+		playlist: fetchPlaylist(params.id, fetch),
+		ads: (import.meta.env.PROD ? getMockEpisodeAds(2) : await getEpisodeAds()).sort(() => Math.random() - 0.5),
+	};
 };

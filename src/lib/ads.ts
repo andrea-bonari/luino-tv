@@ -1,6 +1,7 @@
 import type { Ad } from './types/ads';
 import mock_side_ad from '$lib/images/mock_side_ad.webp';
 import mock_banner_ad from '$lib/images/mock_banner_ad.webp';
+import mock_episode_ad from '$lib/images/mock_episode_ad.webp';
 
 export const getMockAds = (n: number): Ad[] => {
 	const ads: Ad[] = [];
@@ -41,4 +42,28 @@ export const getMockBannerAds = (n: number): Ad[] => {
 	}
 
 	return ads;
+};
+
+export const getBannerAds = async () : Promise<Ad[]> => {
+	// TODO: implement
+	return [];
+};
+
+export const getMockEpisodeAds = (n: number): Ad[] => {
+	const ads: Ad[] = [];
+
+	for (let i = 0; i < n; i++) {
+		ads.push({
+			type: 'image',
+			src: mock_episode_ad,
+			href: '#',
+		});
+	}
+
+	return ads;
+};
+
+export const getEpisodeAds = async () : Promise<Ad[]> => {
+	// TODO: implement
+	return [];
 };
