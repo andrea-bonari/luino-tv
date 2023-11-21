@@ -15,12 +15,16 @@
 	import { getMockAds } from '$lib/ads';
 	import SideAd from '$lib/components/SideAd.svelte';
 	import { afterNavigate } from '$app/navigation';
+	import { inject } from '@vercel/analytics';
+
+	inject({ mode: import.meta.env.PROD ? 'production' : 'development' });
 
 	onMount(() => {
 		if (import.meta.env.PROD) {
 			(document.querySelector('.unverified') as HTMLElement).style.display = 'unset';
 		}
 	});
+
 
 	afterNavigate(() => {
 		document.querySelector('#page')?.scrollTo({ top: 0, behavior: 'smooth' });
