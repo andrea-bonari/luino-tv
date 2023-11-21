@@ -1,5 +1,6 @@
 import type { Ad } from './types/ads';
 import mock_side_ad from '$lib/images/mock_side_ad.webp';
+import mock_banner_ad from '$lib/images/mock_banner_ad.webp';
 
 export const getMockAds = (n: number): Ad[] => {
 	const ads: Ad[] = [];
@@ -7,7 +8,6 @@ export const getMockAds = (n: number): Ad[] => {
 	for (let i = 0; i < n; i++) {
 		ads.push({
 			type: 'image',
-			display: Math.random() > 0.5 ? 'sidebanner' : 'bottom',
 			src: mock_side_ad,
 			href: '#',
 		});
@@ -23,9 +23,22 @@ export const getAds = async () : Promise<Ad[]> => {
 	return data.items.map(({ fields } : any, i : number) => {
 		return {
 			type: 'image',
-			display: 'sidebanner',
 			src: `https:${data.includes.Asset[i].fields.file.url}`,
 			href: fields.url,
 		};
 	});
+};
+
+export const getMockBannerAds = (n: number): Ad[] => {
+	const ads: Ad[] = [];
+
+	for (let i = 0; i < n; i++) {
+		ads.push({
+			type: 'image',
+			src: mock_banner_ad,
+			href: '#',
+		});
+	}
+
+	return ads;
 };

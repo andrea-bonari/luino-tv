@@ -36,6 +36,18 @@
 
 	<div class="flex flex-col gap-4 items-center">
 		{#each data.playlists as playlist, i}
+			{#if i % import.meta.env.VITE_AD_PER_PROGRAM == 0 && data.ads.length < i % import.meta.env.VITE_AD_PER_PROGRAM}
+				<a href={data.ads[i / import.meta.env.VITE_AD_PER_PROGRAM].href}>
+					{#if data.ads[i / import.meta.env.VITE_AD_PER_PROGRAM].type == 'image'}
+						<img src={data.ads[i / import.meta.env.VITE_AD_PER_PROGRAM].src} alt="Pubblicità" class="max-w-full md:max-w-sm w-full lg:max-w-full lg:flex rounded-lg variant-filled-surface border stre" />
+					{:else}
+						<video width="250" height="250" autoplay muted>
+							<source src={data.ads[i / import.meta.env.VITE_AD_PER_PROGRAM].src} type="video/mp4" class="max-w-full md:max-w-sm w-full lg:max-w-full lg:flex rounded-lg variant-filled-surface border" />
+						</video>
+					{/if}
+				</a>
+			{/if}
+
 			<div
 				class="max-w-full md:max-w-sm w-full lg:max-w-full lg:flex rounded-lg variant-filled-surface border"
 				in:slide|global={{ delay: 62 * i }}
