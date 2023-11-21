@@ -12,19 +12,24 @@
 	} from '@skeletonlabs/skeleton';
 	import banner from '$lib/images/banner.webp';
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { getMockAds } from '$lib/ads';
+	import { getMockAds, getAds } from '$lib/ads';
 	import SideAd from '$lib/components/SideAd.svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { inject } from '@vercel/analytics';
+	import type { Ad } from '$lib/types/ads';
 
 	inject({ mode: import.meta.env.PROD ? 'production' : 'development' });
+
+	let fetchAds : Promise<Ad[]> = new Promise(resolve => resolve([]));
 
 	onMount(() => {
 		if (import.meta.env.PROD) {
 			(document.querySelector('.unverified') as HTMLElement).style.display = 'unset';
+			fetchAds = new Promise(resolve => resolve(getMockAds(10)));	// TEMP MOCK for prod
+		} else {
+			fetchAds = getAds();
 		}
 	});
-
 
 	afterNavigate(() => {
 		document.querySelector('#page')?.scrollTo({ top: 0, behavior: 'smooth' });
@@ -37,10 +42,6 @@
 	const closeDrawer = () => {
 		drawerStore.close();
 	};
-
-	const ads = getMockAds(10);
-	const leftAds = ads.slice(0, ads.length / 2);
-	const rightAds = ads.slice(ads.length / 2, ads.length);
 </script>
 
 <Drawer position="right" width="w-min">
@@ -85,17 +86,33 @@
 		</AppBar>
 	</svelte:fragment>
 
-	<div class="flex flex-row max-w-full">
-		<SideAd ads={leftAds} />
-		<div class="flex flex-grow px-2 md:px-0">
-			<slot />
+	{#await fetchAds}
+		<div class="flex flex-row max-w-full">
+			<SideAd ads={[]} />
+			<div class="flex flex-grow px-2 md:px-0">
+				<slot />
+			</div>
+			<SideAd ads={[]} />
 		</div>
-		<SideAd ads={rightAds} />
-	</div>
 
-	<div class="flex md:hidden">
-		<SideAd {ads} override={true} />
-	</div>
+		<div class="flex md:hidden">
+			<SideAd ads={[]} override={true} />
+		</div>
+	{:then ads} 
+		<div class="flex flex-row max-w-full">
+			<SideAd ads={ads.slice(0, ads.length / 2)} />
+			<div class="flex flex-grow px-2 md:px-0">
+				<slot />
+			</div>
+			<SideAd ads={ads.slice(ads.length / 2, ads.length)} />
+		</div>
+
+		<div class="flex md:hidden">
+			<SideAd {ads} override={true} />
+		</div>
+
+	{/await}
+
 
 	<svelte:fragment slot="pageFooter">
 		<div class="flex flex-col justify-center content-center text-center p-5">
