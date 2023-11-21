@@ -6,7 +6,7 @@ export const actions: Actions = {
 
 		const { name, email, subject, message } = Object.fromEntries(formData);
 
-		if(!name || !email || !subject || !message) {
+		if (!name || !email || !subject || !message) {
 			return {
 				status: 400,
 			};
@@ -29,12 +29,11 @@ export const actions: Actions = {
 
 		const data = await response.json();
 
-		if(data.success) {
+		if (data.success) {
 			return {
 				status: 200,
 			};
-		}
-		else {
+		} else {
 			return {
 				status: 400,
 			};
