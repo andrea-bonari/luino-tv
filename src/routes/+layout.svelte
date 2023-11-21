@@ -23,7 +23,7 @@
 	let fetchAds : Promise<Ad[]> = new Promise(resolve => resolve([]));
 
 	onMount(() => {
-		if (import.meta.env.DEV) {
+		if (import.meta.env.PROD) {
 			(document.querySelector('.unverified') as HTMLElement).style.display = 'unset';
 			fetchAds = new Promise(resolve => resolve(getMockAds(10)));	// TEMP MOCK for prod
 		} else {
