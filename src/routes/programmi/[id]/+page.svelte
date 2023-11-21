@@ -1,8 +1,15 @@
 <script lang="ts">
+	import { beforeNavigate } from "$app/navigation";
     import type { PageData } from "./$types";
     import { fade, scale, slide } from "svelte/transition";
 
     export let data : PageData;
+
+    let animate = false;
+
+    const triggerAnim = () => {
+        animate = true;
+    }
 </script>
 
 <svelte:head>
@@ -32,6 +39,10 @@
     <meta name="twitter:creator" content="@LuinoTv"/>
 </svelte:head>
 
+{#if animate}
+    <div class="fixed inset-0 bg-black z-20" in:fade={{ duration: 400 }}></div>
+{/if}
+
 <main class="flex flex-col w-full">
     <div in:scale id="img" class="
         mt-4
@@ -49,11 +60,11 @@
         bg-no-repeat
         bg-center
         " style:background-image={`url(${data.thumbnail})`}>
-        <div class="flex flex-col variant-glass-primary p-4 rounded-2xl">
+        <div class="flex flex-col variant-filled-primary p-4 rounded-2xl text-[rgba(var(--theme-font-color-dark))]">
             <h1 class="h1">{data.title}</h1>
             <h4 class="h4 mt-2">{data.videos.length} Episodi</h4>
-            <p class="mt-4 blockquote drop-shadow-2xl">{data.description}</p>
-            <a class="btn card-hover variant-filled-secondary w-min self-end mt-4" href="https://youtube.com/watch?v={data.videos[0].id}&list={data.id}&index=1">Riproduci</a>
+            <p class="mt-4 text-[rgba(var(--theme-font-color-dark))] blockquote drop-shadow-2xl">{data.description}</p>
+            <a on:click={triggerAnim} class="btn card-hover variant-filled-secondary w-min self-end mt-4" href="https://youtube.com/watch?v={data.videos[0].id}&list={data.id}&index=1">Riproduci</a>
         </div>
     </div>
 
@@ -61,7 +72,7 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 mt-4">
         {#each data.videos as video, i}
-            <a in:slide|global={{delay: 125 + 62 * i}} class="card text-center card-hover flex flex-col justify-between" href="https://youtube.com/watch?v={video.id}&list={data.id}&index={i+1}">
+            <a on:click={triggerAnim} in:slide|global={{delay: 125 + 62 * i}} class="card text-center card-hover flex flex-col justify-between" href="https://youtube.com/watch?v={video.id}&list={data.id}&index={i+1}">
                 <header class="card-header">
                     <img src={video.thumbnail} alt={video.id}>
                 </header>
