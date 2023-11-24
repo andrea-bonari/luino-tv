@@ -45,8 +45,16 @@ export const getMockBannerAds = (n: number): Ad[] => {
 };
 
 export const getBannerAds = async () : Promise<Ad[]> => {
-	// TODO: implement
-	return [];
+	const response = await fetch(`https://cdn.contentful.com/spaces/${import.meta.env.VITE_CONTENTFUL_SPACE}/environments/master/entries?access_token=${import.meta.env.VITE_CONTENTFUL_TOKEN}&content_type=programs-ad`);
+	const data = await response.json();
+
+	return data.items.map(({ fields } : any, i : number) => {
+		return {
+			type: 'image',
+			src: `https:${data.includes.Asset[i].fields.file.url}`,
+			href: fields.url,
+		};
+	});
 };
 
 export const getMockEpisodeAds = (n: number): Ad[] => {
@@ -64,6 +72,14 @@ export const getMockEpisodeAds = (n: number): Ad[] => {
 };
 
 export const getEpisodeAds = async () : Promise<Ad[]> => {
-	// TODO: implement
-	return [];
+	const response = await fetch(`https://cdn.contentful.com/spaces/${import.meta.env.VITE_CONTENTFUL_SPACE}/environments/master/entries?access_token=${import.meta.env.VITE_CONTENTFUL_TOKEN}&content_type=episode-ad`);
+	const data = await response.json();
+
+	return data.items.map(({ fields } : any, i : number) => {
+		return {
+			type: 'image',
+			src: `https:${data.includes.Asset[i].fields.file.url}`,
+			href: fields.url,
+		};
+	});
 };

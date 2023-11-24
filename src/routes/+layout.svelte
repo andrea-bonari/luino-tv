@@ -23,10 +23,10 @@
 	let fetchAds : Promise<Ad[]> = new Promise(resolve => resolve([]));
 
 	onMount(() => {
-		if (import.meta.env.PROD) {
-			(document.querySelector('.unverified') as HTMLElement).style.display = 'unset';
-			fetchAds = new Promise(resolve => resolve(getMockAds(10)));	// TEMP MOCK for prod
+		if (import.meta.env.DEV) {
+			fetchAds = new Promise(resolve => resolve(getMockAds(10)));
 		} else {
+			(document.querySelector('.unverified') as HTMLElement).style.display = 'unset';
 			fetchAds = getAds();
 		}
 	});
@@ -117,14 +117,6 @@
 	<svelte:fragment slot="pageFooter">
 		<div class="flex flex-col justify-center content-center text-center p-5">
 			<p class="mb-3">La web TV dell'alto Varesotto</p>
-			<h6>
-				Sito web prodotto da <a
-					class="chip variant-soft hover:variant-filled card-hover"
-					href="http://svasso-spensierato.web.app"
-					target="_blank"
-					rel="noopener noreferrer">Andrea Bonari</a
-				>
-			</h6>
 		</div>
 	</svelte:fragment>
 </AppShell>

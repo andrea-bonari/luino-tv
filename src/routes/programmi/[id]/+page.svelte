@@ -40,7 +40,7 @@
 </svelte:head>
 
 {#if animate}
-	<div class="fixed inset-0 bg-black z-20" in:fade={{ duration: 400 }}></div>
+	<div class="fixed inset-0 bg-black z-20" in:fade={{ duration: 200 }}></div>
 {/if}
 
 <main class="flex flex-col w-full">
