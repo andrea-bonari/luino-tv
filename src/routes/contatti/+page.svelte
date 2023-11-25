@@ -197,7 +197,7 @@
 		<a
 			class="block card card-hover p-4 variant-filled-surface hover:variant-filled-secondary"
 			target="_blank"
-			href="mailto:redazione@luinotv.it"
+			href="mailto:luinotv@gmail.com"
 		>
 			<div class="card-header flex flex-col content-center">
 				<svg
@@ -218,7 +218,7 @@
 				</svg>
 				<h3 class="w-fill text-center h3">Email</h3>
 			</div>
-			<p class="p-4 w-fill text-center">redazione@luinotv.it</p>
+			<p class="p-4 w-fill text-center">luinotv@gmail.com</p>
 		</a>
 		<a
 			class="block card card-hover p-4 variant-filled-surface hover:variant-filled-secondary"
