@@ -21,10 +21,10 @@ export const getAds = async () : Promise<Ad[]> => {
 	const response = await fetch(`https://cdn.contentful.com/spaces/${import.meta.env.VITE_CONTENTFUL_SPACE}/environments/master/entries?access_token=${import.meta.env.VITE_CONTENTFUL_TOKEN}&content_type=ad`);
 	const data = await response.json();
 
-	return data.items.map(({ fields } : any, i : number) => {
+	return data.items.map(({ fields }: any) => {
 		return {
 			type: 'image',
-			src: `https:${data.includes.Asset[i].fields.file.url}`,
+			src: `https:${(data.includes.Asset as any[]).find(v => v.sys.id == fields.image.sys.id).fields.file.url}`,
 			href: fields.url,
 		};
 	});
@@ -48,10 +48,10 @@ export const getBannerAds = async () : Promise<Ad[]> => {
 	const response = await fetch(`https://cdn.contentful.com/spaces/${import.meta.env.VITE_CONTENTFUL_SPACE}/environments/master/entries?access_token=${import.meta.env.VITE_CONTENTFUL_TOKEN}&content_type=programs-ad`);
 	const data = await response.json();
 
-	return data.items.map(({ fields } : any, i : number) => {
+	return data.items.map(({ fields } : any) => {
 		return {
 			type: 'image',
-			src: `https:${data.includes.Asset[i].fields.file.url}`,
+			src: `https:${(data.includes.Asset as any[]).find(v => v.sys.id == fields.image.sys.id).fields.file.url}`,
 			href: fields.url,
 		};
 	});
@@ -75,10 +75,10 @@ export const getEpisodeAds = async () : Promise<Ad[]> => {
 	const response = await fetch(`https://cdn.contentful.com/spaces/${import.meta.env.VITE_CONTENTFUL_SPACE}/environments/master/entries?access_token=${import.meta.env.VITE_CONTENTFUL_TOKEN}&content_type=episode-ad`);
 	const data = await response.json();
 
-	return data.items.map(({ fields } : any, i : number) => {
+	return data.items.map(({ fields } : any) => {
 		return {
 			type: 'image',
-			src: `https:${data.includes.Asset[i].fields.file.url}`,
+			src: `https:${(data.includes.Asset as any[]).find(v => v.sys.id == fields.image.sys.id).fields.file.url}`,
 			href: fields.url,
 		};
 	});

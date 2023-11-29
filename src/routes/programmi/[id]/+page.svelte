@@ -73,11 +73,13 @@
 			<p class="mt-4 text-[rgba(var(--theme-font-color-dark))] blockquote drop-shadow-2xl">
 				{data.playlist.description}
 			</p>
+			{#if data.playlist.videos.length > 0}
 			<a
 				on:click={triggerAnim}
 				class="btn card-hover variant-filled-secondary w-min self-end mt-4"
 				href="https://youtube.com/watch?v={data.playlist.videos[0].id}&list={data.playlist.id}&index=1">Riproduci</a
 			>
+			{/if}
 		</div>
 	</div>
 
