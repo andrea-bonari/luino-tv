@@ -68,8 +68,8 @@
                 <dd class="text-sm opacity-50">Direttore</dd>
             </span>
         </div>
-        <div class="card">
-            <span class="flex-auto p-2 mt-0">
+        <div class="card mt-0">
+            <span class="flex-auto p-2">
                 <dt class="font-bold">Dario Lucini</dt>
                 <dd class="text-sm opacity-50">Vicedirettore</dd>
             </span>
