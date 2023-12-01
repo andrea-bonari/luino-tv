@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
     import { slide, fade } from "svelte/transition";
-    import logo from '$lib/images/logo.webp';
 
     export let data: PageData;
 
@@ -44,55 +43,6 @@
 {/if}
 
 <main class="flex flex-col content-center items-center w-full">
-    <img class="min-w-[15rem] w-[40%]" src={logo} alt="Immagine LuinoTV">
-
-    <h4 class="h4 text-justify">Web TV dedicata all'Alto Varesotto. Produciamo programmi di informazione, intrattenimento e attualità in collaborazione con l'Accademia SG Academy.</h4>
-
-    <a class="btn variant-filled-secondary w-min mt-5" href="/programmi/">Vai ai programmi</a>
-
-    <hr class="h-px my-4 bg-gray-200 border-1 dark:bg-gray-700" />
-
-    <h3 class="h3">Palinsesto</h3>
-
-    <li class="list-dl w-full text-token card p-4 space-y-4">
-        <div class="card">
-            <span class="flex-auto">
-                <dt class="font-bold">Dante Brancarisano</dt>
-                <dd class="text-sm opacity-50">Direttore</dd>
-            </span>
-        </div>
-        <div class="card">
-            <span class="flex-auto">
-                <dt class="font-bold">Dario Lucini</dt>
-                <dd class="text-sm opacity-50"></dd>
-            </span>
-        </div>
-        <div class="card">
-            <span class="flex-auto">
-                <dt class="font-bold">Fulvia Andreani</dt>
-                <dd class="text-sm opacity-50"></dd>
-            </span>
-        </div>
-        <div class="card">
-            <span class="flex-auto">
-                <dt class="font-bold">Nicole Sansano</dt>
-                <dd class="text-sm opacity-50"></dd>
-            </span>
-        </div>
-        <div class="card">
-            <span class="flex-auto">
-                <dt class="font-bold">Lidia Nardone</dt>
-                <dd class="text-sm opacity-50"></dd>
-            </span>
-        </div>
-        <div class="card">
-            <span class="flex-auto">
-                <dt class="font-bold">Emily Sommariva</dt>
-                <dd class="text-sm opacity-50"></dd>
-            </span>
-        </div>
-    </li>
-
     <h3 class="h3 my-4">I nostri servizi più recenti</h3>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">

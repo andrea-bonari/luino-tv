@@ -21,7 +21,7 @@ export const fetchPlaylistsInChannel = async (channelId: string, cfetch: ((input
 	);
 };
 
-export const fetchPlaylist = async (playlistId: string, cfetch: ((input: RequestInfo, init?: RequestInit | undefined) => Promise<Response>)|null = null): Promise<Playlist> => {
+export const fetchPlaylist = async (playlistId: string, cfetch: ((input: RequestInfo, init?: RequestInit | undefined) => Promise<Response>)|null = null, maxVideos = -1): Promise<Playlist> => {
 	const request = cfetch || fetch;
 
 	const res = await request(
@@ -39,29 +39,48 @@ export const fetchPlaylist = async (playlistId: string, cfetch: ((input: Request
 		description: item.snippet.description,
 		thumbnail: fetchThumbnail(item.snippet.thumbnails),
 		id: item.id,
-		videos: await fetchVideosInPlaylist(item.id, cfetch),
+		videos: await fetchVideosInPlaylist(item.id, cfetch, maxVideos),
 	};
 };
 
-export const fetchVideosInPlaylist = async (playlistId: string, cfetch: ((input: RequestInfo, init?: RequestInit | undefined) => Promise<Response>)|null = null): Promise<Video[]> => {
+export const fetchVideosInPlaylist = async (playlistId: string, cfetch: ((input: RequestInfo, init?: RequestInit | undefined) => Promise<Response>)|null = null, maxVideos = -1): Promise<Video[]> => {
 	const request = cfetch || fetch;
 
-	const res = await request(
-		`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&key=${
-			import.meta.env.VITE_YOUTUBE_API_KEY
-		}`,
-	);
-	const data = await res.json();
+	const videos : any[] = [];
+	let nextPageToken = '';
 
-	return data.items.map((item: any) => ({
-		title: item.snippet.title,
-		description: item.snippet.description,
-		thumbnail: fetchThumbnail(item.snippet.thumbnails),
-		id: item.snippet.resourceId.videoId,
-	}));
+	while((maxVideos === -1 && nextPageToken != undefined) || (maxVideos != -1 && videos.length < maxVideos)) {
+		const res = await request(
+			`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&pageToken=${nextPageToken}&key=${
+				import.meta.env.VITE_YOUTUBE_API_KEY
+			}`,
+		);
+
+		const data = await res.json();
+
+		nextPageToken = data.nextPageToken;
+
+		videos.push(...data.items);
+	}
+
+	if(maxVideos === -1) {
+		return videos.map((item: any) => ({
+			title: item.snippet.title,
+			description: item.snippet.description,
+			thumbnail: fetchThumbnail(item.snippet.thumbnails),
+			id: item.snippet.resourceId.videoId,
+		}));
+	} else {
+		return videos.map((item: any) => ({
+			title: item.snippet.title,
+			description: item.snippet.description,
+			thumbnail: fetchThumbnail(item.snippet.thumbnails),
+			id: item.snippet.resourceId.videoId,
+		})).slice(0, maxVideos);
+	}
 };
 
-export const getVideosInChannel = async (channelId: string, cfetch: ((input: RequestInfo, init?: RequestInit | undefined) => Promise<Response>)|null = null): Promise<Video[]> => {
+export const getVideosInChannel = async (channelId: string, cfetch: ((input: RequestInfo, init?: RequestInit | undefined) => Promise<Response>)|null = null, maxVideos = -1): Promise<Video[]> => {
 	const request = cfetch || fetch;
 
 	const res = await request(
@@ -72,7 +91,7 @@ export const getVideosInChannel = async (channelId: string, cfetch: ((input: Req
 
 	const data = await res.json();
 
-	return (await fetchPlaylist(data.items[0].contentDetails.relatedPlaylists.uploads, cfetch)).videos;
+	return (await fetchPlaylist(data.items[0].contentDetails.relatedPlaylists.uploads, cfetch, maxVideos)).videos;
 };
 
 const fetchThumbnail = (obj: any) : string => {

@@ -2,6 +2,7 @@
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import type { ActionData } from './$types';
 	import { slide } from 'svelte/transition';
+	import logo from '$lib/images/logo.webp';
 
 	export let form: ActionData;
 
@@ -49,7 +50,52 @@
 	<meta name="twitter:creator" content="@LuinoTv" />
 </svelte:head>
 
-<main class="flex flex-col content-center w-full">
+<main class="flex flex-col content-center w-full items-center">
+	<img class="min-w-[15rem] w-[40%]" src={logo} alt="Immagine LuinoTV">
+
+    <h4 class="h4 text-justify">Web TV dedicata all'Alto Varesotto. Produciamo programmi di informazione, intrattenimento e attualità in collaborazione con l'Accademia SG Academy.</h4>
+
+    <a class="btn variant-filled-secondary w-min mt-5" href="/programmi/">Vai ai programmi</a>
+
+    <hr class="h-px my-4 bg-gray-200 border-1 dark:bg-gray-700" />
+
+    <h3 class="h3">Palinsesto</h3>
+
+    <li class="list-dl w-full text-token card p-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="card">
+            <span class="flex-auto p-2">
+                <dt class="font-bold">Dante Brancarisano</dt>
+                <dd class="text-sm opacity-50">Direttore</dd>
+            </span>
+        </div>
+        <div class="card">
+            <span class="flex-auto p-2">
+                <dt class="font-bold">Dario Lucini</dt>
+                <dd class="text-sm opacity-50">Vicedirettore</dd>
+            </span>
+        </div>
+        <div class="card">
+            <span class="flex-auto p-2">
+                <dt class="font-bold">Fulvia Andreani</dt>
+            </span>
+        </div>
+        <div class="card">
+            <span class="flex-auto p-2">
+                <dt class="font-bold">Nicole Sansano</dt>
+            </span>
+        </div>
+        <div class="card">
+            <span class="flex-auto p-2">
+                <dt class="font-bold">Lidia Nardone</dt>
+            </span>
+        </div>
+        <div class="card">
+            <span class="flex-auto p-2">
+                <dt class="font-bold">Emily Sommariva</dt>
+            </span>
+        </div>
+    </li>
+
 	<h1 class="w-full text-center h1 mt-3 mb-5">Contatti</h1>
 
 	<div class="logo-cloud grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-0.5" in:slide>
