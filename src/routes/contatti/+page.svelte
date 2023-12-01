@@ -69,7 +69,7 @@
             </span>
         </div>
         <div class="card">
-            <span class="flex-auto p-2">
+            <span class="flex-auto p-2 mt-0">
                 <dt class="font-bold">Dario Lucini</dt>
                 <dd class="text-sm opacity-50">Vicedirettore</dd>
             </span>
