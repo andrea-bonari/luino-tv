@@ -3,15 +3,25 @@ import type { Playlist, Video } from './types/youtube';
 export const fetchPlaylistsInChannel = async (channelId: string, cfetch: ((input: RequestInfo, init?: RequestInit | undefined) => Promise<Response>)|null = null): Promise<Playlist[]> => {
 	const request = cfetch || fetch;
 
-	const res = await request(
-		`https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=${channelId}&key=${
-			import.meta.env.VITE_YOUTUBE_API_KEY
-		}`,
-	);
-	const data = await res.json();
+	const playlists: any[] = [];
+	let nextPageToken = '';
+
+	while(nextPageToken != undefined) {
+		const res = await request(
+			`https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=${channelId}&pageToken=${nextPageToken}&key=${
+				import.meta.env.VITE_YOUTUBE_API_KEY
+			}`,
+		);
+
+		const data = await res.json();
+
+		nextPageToken = data.nextPageToken;
+
+		playlists.push(...data.items);
+	}
 
 	return await Promise.all(
-		data.items.map(async (item: any) => ({
+		playlists.map(async (item: any) => ({
 			title: item.snippet.title,
 			description: item.snippet.description,
 			thumbnail: fetchThumbnail(item.snippet.thumbnails),

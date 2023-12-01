@@ -1,8 +1,12 @@
 <script lang="ts">
 	import type { Ad } from '$lib/types/ads';
+	import mock_side_ad from '$lib/images/mock_side_ad.webp';
 
 	export let ads: Ad[];
+	export let height: number;
 	export let override: boolean = false;
+
+	$: console.log(Math.floor((height - 16) / 266));
 </script>
 
 {#if !override}
@@ -18,6 +22,13 @@
 				{/if}
 			</a>
 		{/each}
+		{#if height}
+			{#each new Array(Math.round((height - (16 + ads.length * 266)) / 266)) as _}
+				<a href="https://luinotv.it/">
+					<img src={mock_side_ad} alt="Pubblicità" height="250" width="250" />
+				</a>
+			{/each}
+		{/if}
 	</main>
 {:else}
 	<main class="gap-4 grid-cols-1 sm:grid-cols-3 m-3 min-w-[250px] grid w-full">

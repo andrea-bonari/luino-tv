@@ -21,6 +21,7 @@
 	inject({ mode: import.meta.env.PROD ? 'production' : 'development' });
 
 	let fetchAds : Promise<Ad[]> = new Promise(resolve => resolve([]));
+	let height: number;
 
 	onMount(() => {
 		if (import.meta.env.DEV) {
@@ -88,27 +89,27 @@
 
 	{#await fetchAds}
 		<div class="flex flex-row max-w-full">
-			<SideAd ads={[]} />
-			<div class="flex flex-grow px-2 md:px-0">
+			<SideAd ads={[]} bind:height />
+			<div class="flex flex-grow px-2 md:px-0" bind:clientHeight={height}>
 				<slot />
 			</div>
-			<SideAd ads={[]} />
+			<SideAd ads={[]} bind:height />
 		</div>
 
 		<div class="flex md:hidden">
-			<SideAd ads={[]} override={true} />
+			<SideAd ads={[]} override={true} bind:height />
 		</div>
 	{:then ads} 
 		<div class="flex flex-row max-w-full">
-			<SideAd ads={ads.slice(0, ads.length / 2)} />
+			<SideAd ads={ads.slice(0, ads.length / 2)} bind:height />
 			<div class="flex flex-grow px-2 md:px-0">
 				<slot />
 			</div>
-			<SideAd ads={ads.slice(ads.length / 2, ads.length)} />
+			<SideAd ads={ads.slice(ads.length / 2, ads.length)} bind:height />
 		</div>
 
 		<div class="flex md:hidden">
-			<SideAd {ads} override={true} />
+			<SideAd {ads} override={true} bind:height />
 		</div>
 
 	{/await}

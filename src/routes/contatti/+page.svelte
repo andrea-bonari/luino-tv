@@ -67,7 +67,7 @@
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
 			<div class="card p-3">
 				<span class="flex-auto">
-					<dt class="font-bold">Dante Brancarisano</dt>
+					<dt class="font-bold">Dante Brancatisano</dt>
 					<dd class="text-sm opacity-50">Direttore</dd>
 				</span>
 			</div>
@@ -109,7 +109,7 @@
 
 	<h1 class="w-full text-center h1 mt-3 mb-5">Contatti</h1>
 
-	<div class="logo-cloud grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-0.5" in:slide>
+	<div class="logo-cloud grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-0.5 w-full" in:slide>
 		<a
 			class="logo-item card-hover variant-filled-surface hover:variant-filled-secondary"
 			target="_blank"
@@ -301,7 +301,7 @@
 				</svg>
 				<h3 class="w-fill text-center h3">Telefono</h3>
 			</div>
-			<p class="p-4 w-fill text-center">Dante Brancarisano: +39 351 013 7159</p>
+			<p class="p-4 w-fill text-center">Dante Brancatisano: +39 351 013 7159</p>
 		</a>
 	</div>
 
