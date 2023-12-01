@@ -61,40 +61,51 @@
 
     <h3 class="h3">Palinsesto</h3>
 
-    <li class="list-dl w-full text-token card p-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div class="card">
-            <span class="flex-auto p-2">
-                <dt class="font-bold">Dante Brancarisano</dt>
-                <dd class="text-sm opacity-50">Direttore</dd>
-            </span>
-        </div>
-        <div class="card mt-0">
-            <span class="flex-auto p-2">
-                <dt class="font-bold">Dario Lucini</dt>
-                <dd class="text-sm opacity-50">Vicedirettore</dd>
-            </span>
-        </div>
-        <div class="card">
-            <span class="flex-auto p-2">
-                <dt class="font-bold">Fulvia Andreani</dt>
-            </span>
-        </div>
-        <div class="card">
-            <span class="flex-auto p-2">
-                <dt class="font-bold">Nicole Sansano</dt>
-            </span>
-        </div>
-        <div class="card">
-            <span class="flex-auto p-2">
-                <dt class="font-bold">Lidia Nardone</dt>
-            </span>
-        </div>
-        <div class="card">
-            <span class="flex-auto p-2">
-                <dt class="font-bold">Emily Sommariva</dt>
-            </span>
-        </div>
-    </li>
+    <div class="w-full card p-4">
+		<h4 class="h4 text-center my-2">Direzione Artistica</h4>
+
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+			<div class="card p-3">
+				<span class="flex-auto">
+					<dt class="font-bold">Dante Brancarisano</dt>
+					<dd class="text-sm opacity-50">Direttore</dd>
+				</span>
+			</div>
+			<div class="card p-3">
+				<span class="flex-auto">
+					<dt class="font-bold">Dario Lucini</dt>
+					<dd class="text-sm opacity-50">Vicedirettore</dd>
+				</span>
+			</div>
+		</div>
+
+		<h4 class="h4 text-center my-2">Presentatori</h4>
+
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+			<div class="card p-3">
+				<span class="flex-auto">
+					<dt class="font-bold">Fulvia Andreani</dt>
+				</span>
+			</div>
+			<div class="card p-3">
+				<span class="flex-auto">
+					<dt class="font-bold">Nicole Sansano</dt>
+				</span>
+			</div>
+			<div class="card p-3">
+				<span class="flex-auto">
+					<dt class="font-bold">Lidia Nardone</dt>
+				</span>
+			</div>
+			<div class="card p-3">
+				<span class="flex-auto">
+					<dt class="font-bold">Emily Sommariva</dt>
+				</span>
+			</div>
+		</div>
+        
+        
+    </div>
 
 	<h1 class="w-full text-center h1 mt-3 mb-5">Contatti</h1>
 
