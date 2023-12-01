@@ -5,8 +5,6 @@
 	export let ads: Ad[];
 	export let height: number;
 	export let override: boolean = false;
-
-	$: console.log(Math.floor((height - 16) / 266));
 </script>
 
 {#if !override}

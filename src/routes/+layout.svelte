@@ -111,7 +111,6 @@
 		<div class="flex md:hidden">
 			<SideAd {ads} override={true} bind:height />
 		</div>
-
 	{/await}
 
 

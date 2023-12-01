@@ -87,5 +87,11 @@
 				</a>
 			{/if}
 		{/each}
+
+		<h1 class="h1 my-4">Eventi</h1>
+
+		<div class="w-full min-h-[10rem] border-[1px]">
+
+		</div>
 	</div>
 </main>
